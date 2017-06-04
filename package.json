@@ -1,6 +1,6 @@
 {
   "name": "fastboot-transform",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Utility to transform given broccoli tree that contains browser API to be fastboot complaint.",
   "main": "src/index.js",
   "repository": "git@github.com:kratiahuja/fastboot-transform.git",

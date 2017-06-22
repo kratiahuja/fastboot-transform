@@ -33,7 +33,19 @@ describe('fastboot-transform', function() {
     yield output.build();
 
     expect(output.read()).to.deep.equal({
-      "index.js": "if (typeof FastBoot === 'undefined') { window.hello = \"hello world\"; }"
+      "index.js": "if (typeof FastBoot === 'undefined') {\nwindow.hello = \"hello world\";\n}"
+    });
+  }));
+
+  it('should transform files ending in a line comment', co.wrap(function* () {
+    input.write({
+      "index.js": `window.hello = "hello world";\n// a line comment`
+    });
+
+    yield output.build();
+
+    expect(output.read()).to.deep.equal({
+      "index.js": "if (typeof FastBoot === 'undefined') {\nwindow.hello = \"hello world\";\n// a line comment\n}"
     });
   }));
 });

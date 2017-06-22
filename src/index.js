@@ -10,7 +10,5 @@ module.exports = function(tree) {
     throw new Error('`fastboot-transform` requires broccoli tree as input.');
   }
 
-  return map(tree, (content) => `if (typeof FastBoot === 'undefined') {
-    ${content}
-  }`);
+  return map(tree, (content) => `if (typeof FastBoot === 'undefined') {\n${content}\n}`);
 }

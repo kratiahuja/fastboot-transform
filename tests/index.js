@@ -25,15 +25,17 @@ describe('fastboot-transform', function() {
     yield output.dispose();
   }));
 
-  it('should transform', co.wrap(function* () {
+  it('should transform JS files', co.wrap(function* () {
     input.write({
-      "index.js": `window.hello = "hello world";`
+      "index.js": `window.hello = "hello world";`,
+      "index.css": "body { color: green; }"
     });
 
     yield output.build();
 
     expect(output.read()).to.deep.equal({
-      "index.js": "if (typeof FastBoot === 'undefined') {\nwindow.hello = \"hello world\";\n}"
+      "index.js": "if (typeof FastBoot === 'undefined') {\nwindow.hello = \"hello world\";\n}",
+      "index.css": "body { color: green; }"
     });
   }));
 

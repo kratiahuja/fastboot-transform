@@ -50,4 +50,16 @@ describe('fastboot-transform', function() {
       "index.js": "if (typeof FastBoot === 'undefined') {\nwindow.hello = \"hello world\";\n// a line comment\n}"
     });
   }));
+
+  it('should remove sourcemap comments', co.wrap(function* () {
+    input.write({
+      "index.js": `window.hello = "hello world";\n//# sourceMappingURL=vendor.map`
+    });
+
+    yield output.build();
+
+    expect(output.read()).to.deep.equal({
+      "index.js": "if (typeof FastBoot === 'undefined') {\nwindow.hello = \"hello world\";\n\n}"
+    });
+  }));
 });

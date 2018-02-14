@@ -10,7 +10,8 @@
     "test": "node_modules/.bin/mocha tests/"
   },
   "dependencies": {
-    "broccoli-stew": "^1.5.0"
+    "broccoli-stew": "^1.5.0",
+    "convert-source-map": "^1.5.1"
   },
   "devDependencies": {
     "broccoli-funnel": "^1.2.0",
